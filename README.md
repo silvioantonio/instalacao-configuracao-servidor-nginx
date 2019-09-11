@@ -15,15 +15,13 @@ O Nginx é um dos servidores web mais populares no mundo e é responsável por h
 
 A principio todos os comando utilizados nesse guia sao feitos no terminal linux como super usuario\(usuario root\), porem, voce pode utilizar um usuario regular nao-root com privilegios `SUDO`configurado em sua maquina para que voçe possa utilizar os comandos no sistema.
 
-{% hint style="info" %}
- Para utilizar os privilegios de super usuario, voçe deve acessar o terminal e para isso utilize as teclas de atalho `CTRL + ALT + T` e em seguida digite `$SUDO SU` o comando ira pedir a senha do usuario root\(super usuario\) .
-{% endhint %}
 
-{% hint style="danger" %}
+ Para utilizar os privilegios de super usuario, voçe deve acessar o terminal e para isso utilize as teclas de atalho `CTRL + ALT + T` e em seguida digite `$SUDO SU` o comando ira pedir a senha do usuario root\(super usuario\) .
+
+
 Atenção!!!
 
 Enquanto estiver como usuario root, todo comando ou ação que for executado sera valido para o sistema sem restrições, por isso cuidado.
-{% endhint %}
 
 ## Instalação
 
@@ -56,8 +54,7 @@ sytemctl status nginx
 
 Com o comando `systemctl status <server name>` podemos verificar quais servidores estao ativos ou nao em sua maquina.
 
-{% code-tabs %}
-{% code-tabs-item title="Output" %}
+
 ```bash
 ● nginx.service - A high performance web server and a reverse proxy server
    Loaded: loaded (/lib/systemd/system/nginx.service; enabled; vendor preset: enabled)
@@ -68,8 +65,6 @@ Com o comando `systemctl status <server name>` podemos verificar quais servidore
            └─12858 nginx: worker process
 
 ```
-{% endcode-tabs-item %}
-{% endcode-tabs %}
 
 Como voce pode ver, o servidor esta funcionando corretamente, mas a melhor forma para se testar isso é acessando a pagina default do servidor em sua maquina, e dessa forma confirmar que o servidor esta operante.
 
@@ -85,7 +80,6 @@ Primeiramente, vamos criar o arquivo de configuração do nosso virtual host. Le
 gedit /etc/nginx/sites-available/virtualhost1
 ```
 
-{% hint style="info" %}
 Editor de texto e Nome do arquivo
 
 #### Editor
@@ -95,7 +89,6 @@ Nexte exemplo estou utilizando o gedit, mas voce pode utilizar editores do siste
 #### Nome do arquivo
 
 Neste exemplo coloquei o nome do arquivo como "virtualhost1", porem voce pode colocar qualquer nome que quiser, apenas lembre-se desse nome, voce ira precisar em breve nos proximos passos da configuraçao.
-{% endhint %}
 
 Preencha com:
 
@@ -134,13 +127,11 @@ mkdir /var/www/virtualhost1
 gedit /var/www/virtualhost1/index.html
 ```
 
-{% hint style="info" %}
 mkdir
 
 Este é um comando do terminal linux para criação de diretorios/pastas.
 
 no exemplo acima estou criando via terminal uma pasta dentro de /var/www chamada de virtualhost1
-{% endhint %}
 
 Coloque qualquer conteudo dentro desse arquivo \(index.html\). Este aquivo é a pagina default do seu servido recem criado. É altamente recomendado que paginas html possuam no minimo um cabeçalho e um corpo.
 
@@ -174,8 +165,6 @@ Dentro do terminal digite:
 ifconfig
 ```
 
-{% code-tabs %}
-{% code-tabs-item title="Output" %}
 ```text
 enp8s0: flags=4095<UP,BROADCAST,MULTICAST>  mtu 1500
         ether 08:9e:01:2a:9f:2c  txqueuelen 1000  (Ethernet)
@@ -203,15 +192,11 @@ wlp7s0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
         TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
 
 ```
-{% endcode-tabs-item %}
-{% endcode-tabs %}
 
 Esse comando serve para verificarmos qual ip temos em uma arquitetura de rede local de internet\(dentre outras coisas\).
 
 Na linha 9 do retorno do comando ifconfig é possivel ver o endereço de loop back `inet 127.0.0.1` e na linha 18 o ip de rede `inet 192.168.0.15`
 
-{% code-tabs %}
-{% code-tabs-item title="gedit /etc/hosts" %}
 ```text
 
 127.0.0.1	localhost
@@ -232,8 +217,6 @@ ff02::2 ip6-allrouters
 172.16.29.88 www.silvioweb.com.br
 172.16.29.88 www.silvio.ifto.com.br
 ```
-{% endcode-tabs-item %}
-{% endcode-tabs %}
 
 ## `Habilitar o host`
 
@@ -291,13 +274,11 @@ Para reativar o serviço para iniciar na inicialização do servidor, você pode
 systemctl enable nginx
 ```
 
-{% hint style="info" %}
 Lembrete
 
 Em todos os comandos mostrados ate o momento é entendido que voce esteja como super usuario, caso contrario, eles nao irão funcionar corretamente.
 
 Se voce nao estiver utilizando o perfil de super usuario, coloque o comando `sudo` no inicio de todos os codigos mostrados no artigo e tudo ira funcionar coretamente.
-{% endhint %}
 
 ## Link oficial do servidor
 
